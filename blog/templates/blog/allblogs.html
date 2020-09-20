@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
 
-
 <head>
     {% load staticfiles %}
     <meta charset="utf-8">
@@ -9,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v4.1.1">
-    <title>Bonnie Scotland</title>
+    <title>Album example · Bootstrap</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/album/">
 
@@ -60,48 +59,32 @@
                 <div class="navbar-nav ml-auto">
                     <a class="nav-link" href="https://www.visitscotland.com/">Twitter</a>
                     <a class="nav-link" href="{% static '20180119_114740.jpg' %}">Resume</a>
-                    <a class="nav-link" href="{% url 'allblogs' %}">Blog</a>
+                    <a class="nav-link active" href="{% url 'allblogs' %}">Blog</a>
                 </div>
             </div>
         </nav>
     </header>
 
     <main role="main">
-
-        <section class="jumbotron text-center">
-            <div class="container">
-                <h1>Bonnie Scotland</h1>
-                <p class="lead text-muted">Scotland is the best small country in the world. Or just the best country in
-                    the world? Who knows.</p>
-                <p>
-                    <a href="mailto:joe@joe.com" class="btn btn-primary my-2">Email me</a>
-                </p>
-                <img src="{% static 'surf.jpg' %}" />
-            </div>
-        </section>
-
-        <div class="album py-5 bg-light">
-            <div class="container">
-
-                <div class="row">
-                    {% for job in jobs.all %}
-
-                    <div class="col-md-4">
-                        <div class="card mb-4 shadow-sm">
-                            <img class="card-img-top" src="{{ job.image.url }}" />
-
-                            <div class="card-body">
-                                <p class="card-text">{{ job.summary }}</p>
-
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-
-
-                </div>
-            </div>
+        <div class="container">
+            <h1 class="text-center pt-3">Welcome to Daniel's Scottish blog</h1>
+            <br />
+            <br />
+            <h2>Latest Posts</h2>
+            <hr />
+            {% for blog in blogs.all %}
+            <a href="{% url 'detail' blog.id %}">
+                <h3>{{ blog.title }}</h3>
+            </a>
+            {{ blog.pub_date_pretty }}
+            <br>
+            <img class="img-fluid" src="{{ blog.image.url }}" height="200" width="500" />
+            <br>
+            {{ blog.summary }}
+            {% endfor %}
         </div>
+
+
 
     </main>
 
